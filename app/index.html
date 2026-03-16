@@ -134,7 +134,7 @@ body{font-family:'Inter',sans-serif;background-color:#faf9f7;background-image:ra
 /* MAIN */
 main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
 .tab-panel{display:none;background:#fff;border-radius:16px;padding:24px;margin-top:0;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
-.tab-panel.active{display:block;animation:tabFadeUp 0.3s ease both;}@keyframes tabFadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.tab-panel.active{display:block;animation:tabFadeUp 0.3s ease both;position:relative;}@keyframes tabFadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
 /* NOTICE */
 .notice{background:#fff;border-radius:12px;padding:13px 16px;margin-bottom:22px;font-size:13px;color:var(--soft);line-height:1.7;font-weight:400;border-left:3px solid var(--pur);border:1px solid var(--s2);border-left:3px solid var(--pur);}
@@ -645,11 +645,11 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
             <div class="p-ilbl">Rendimiento anual esperado <span id="inv-lbl">10%</span></div>
             <div class="sl-row"><input type="range" id="pi-inv" min="1" max="30" value="10" step="1" oninput="onInv()"><span class="sl-val" id="inv-disp">10%</span></div>
           </div>
-          <div class="p-igroup" id="g-goal">
+          <div class="p-igroup" id="g-goal" style="display:none">
             <div class="p-ilbl">Meta u objetivo</div>
             <div class="p-wrap"><span class="p-pre">$</span><input class="p-inp" type="number" id="pi-goal" value="60000" oninput="calcProj()"></div>
           </div>
-          <div class="p-igroup" id="g-inf">
+          <div class="p-igroup" id="g-inf" style="display:none">
             <div class="p-ilbl">Inflación anual <span id="inf-lbl">5%</span></div>
             <div class="sl-row"><input type="range" id="pi-inf" min="2" max="15" value="5" step="1" oninput="onInf()"><span class="sl-val" id="inf-disp">5%</span></div>
           </div>
@@ -1157,11 +1157,18 @@ function onRate(){const v=document.getElementById('pi-rate').value;document.getE
 function onInv(){const v=document.getElementById('pi-inv').value;document.getElementById('inv-lbl').textContent=v+'%';document.getElementById('inv-disp').textContent=v+'%';calcProj();}
 function onInf(){const v=document.getElementById('pi-inf').value;document.getElementById('inf-lbl').textContent=v+'%';document.getElementById('inf-disp').textContent=v+'%';calcProj();}
 function updateProjInputs(){
-  const sh=(id,v)=>{const el=document.getElementById(id);if(el)el.style.display=v?'':'none';};
-  sh('g-debt',projSc==='deuda');sh('g-rate',projSc==='deuda');
-  sh('g-inv',projSc==='inversion'||projSc==='libertad');
-  sh('g-goal',projSc==='meta'||projSc==='ahorro');
-  sh('g-inf',projSc==='ahorro'||projSc==='libertad');
+  const sh=(id,v)=>{const el=document.getElementById(id);if(el)el.style.display=v?'block':'none';};
+  // Hide ALL optional fields first
+  ['g-ref','g-debt','g-rate','g-inv','g-goal','g-inf'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.style.display='none';
+  });
+  // Then show only what this scenario needs
+  sh('g-ref', projSc!=='historico');
+  sh('g-debt', projSc==='deuda');
+  sh('g-rate', projSc==='deuda');
+  sh('g-inv', projSc==='inversion'||projSc==='libertad');
+  sh('g-goal', projSc==='meta'||projSc==='ahorro');
+  sh('g-inf', projSc==='ahorro'||projSc==='libertad');
 }
 function calcProj(){
   const monthly=+document.getElementById('pi-sav').value||0;
@@ -1187,12 +1194,12 @@ function calcProj(){
     const savingPct=hasHist?Math.round((monthly/Math.max(totalGasto+monthly,1))*100):0;
     const projSavings=periods.map(m=>saving*m);const maxS=Math.max(...projSavings,1);
     color='#4f46e5';badge='Basado en tu historial';title='Tu trayectoria real';
-    desc=hasHist?`Basado en ${histVals.length} categorías registradas este mes. Gasto total de ${fmt(totalGasto)}/mes, ahorro real de ${fmt(saving)}/mes.`:`Registra tus gastos en Seguimiento para una proyección precisa. Usando estimación del 85% del ingreso.`;
+    desc=hasHist?`Basado en ${histVals.length} categorías registradas este mes. Gasto total de ${fmt(totalGasto)}/mes, ahorro real de ${fmt(saving)}/mes.`:`Aún no tienes gastos registrados. Ve a Seguimiento, ingresa tus gastos reales y aquí verás tu proyección personalizada.`;
     metrics=[
-      {l:'Gasto actual',v:fmt(totalGasto),s:'por mes registrado',hl:true},
-      {l:'Ahorro mensual real',v:fmt(saving),s:savingPct+'% del ingreso'},
-      {l:'Ahorro al '+pL[ci],v:fmtS(projSavings[ci]),s:'si mantienes el ritmo'},
-      {l:'En 1 año ahorrarías',v:fmtS(saving*12),s:'con tendencia actual'},
+      {l:'Gasto actual',v:hasHist?fmt(totalGasto):'—',s:hasHist?'por mes registrado':'sin datos aún',hl:true},
+      {l:'Ahorro mensual real',v:hasHist?fmt(saving):'—',s:hasHist?savingPct+'% del ingreso':'registra tus gastos'},
+      {l:'Ahorro al '+pL[ci],v:hasHist?fmtS(projSavings[ci]):'—',s:hasHist?'si mantienes el ritmo':'sin datos aún'},
+      {l:'En 1 año ahorrarías',v:hasHist?fmtS(saving*12):'—',s:hasHist?'con tendencia actual':'sin datos aún'},
     ];
     progs=[{l:'Tasa de ahorro actual',v:Math.max(savingPct,0),c:'#4f46e5',t:savingPct+'%'}];
     tl=periods.map((m,i)=>({p:pL[i],v:projSavings[i],d:saving*6}));
@@ -1405,6 +1412,8 @@ function showTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
+  if(name==='tracking'){renderTracking();}
+  if(name==='proyecciones'){calcProj();}
 }
 
 // ════════════════════════════════════════════

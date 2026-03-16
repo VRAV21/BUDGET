@@ -352,9 +352,34 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
   .real-inp{width:78px;}
   .proj-grid{grid-template-columns:1fr;}
 }
+
+/* ── EXPIRY SCREEN ── */
+#expiry-screen{display:none;position:fixed;inset:0;z-index:9999;background:var(--bg);background-image:radial-gradient(circle,#d4cfc7 1px,transparent 1px);background-size:28px 28px;align-items:center;justify-content:center;padding:24px;}
+#expiry-screen.open{display:flex;}
+.exp-card{background:#fff;border:1px solid var(--s3);border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center;}
+.exp-icon{font-size:48px;margin-bottom:16px;}
+.exp-title{font-family:'Instrument Serif',serif;font-size:28px;color:var(--text);letter-spacing:-0.5px;margin-bottom:10px;}
+.exp-desc{font-size:14px;color:var(--soft);line-height:1.7;margin-bottom:24px;}
+.exp-date{display:inline-block;background:var(--s1);border:1px solid var(--s3);border-radius:10px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--soft);margin-bottom:24px;}
+.exp-btn{display:block;background:var(--text);color:#fff;border:none;border-radius:100px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:14px 28px;cursor:pointer;text-decoration:none;transition:background 0.2s;}
+.exp-btn:hover{background:#292524;}
+.exp-sub{font-size:12px;color:var(--ghost);margin-top:12px;}
 </style>
 </head>
 <body>
+
+<!-- EXPIRY SCREEN -->
+<div id="expiry-screen">
+  <div class="exp-card">
+    <div class="exp-icon">🔒</div>
+    <div class="exp-title">El periodo de prueba<br>ha terminado</div>
+    <div class="exp-desc">Gracias por ser parte del piloto de Cero. El acceso gratuito estuvo disponible hasta el 30 de junio de 2026 — ahora Cero está disponible como suscripción.</div>
+    <div class="exp-date">Acceso gratuito: hasta el 30 de junio 2026</div>
+    <a href="https://vrav21.github.io/BUDGET" class="exp-btn">Ver planes y precios</a>
+    <p class="exp-sub">¿Ya tienes suscripción? Escríbenos a contacto@ceromx.net</p>
+  </div>
+</div>
+
 
 <!-- PWA BANNER -->
 <div id="pwa-banner">
@@ -1400,6 +1425,13 @@ if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.ser
 // INIT — check if already onboarded
 // ════════════════════════════════════════════
 (function(){
+  // ── EXPIRY CHECK ──
+  const EXPIRY_DATE = new Date('2026-07-01T00:00:00');
+  if(new Date() >= EXPIRY_DATE){
+    document.getElementById('expiry-screen').classList.add('open');
+    return;
+  }
+
   const savedIncome=ld('ceroIncome',null);
   const savedDebt=ld('ceroDebt',null);
   const savedGoal=ld('ceroGoal',null);

@@ -252,6 +252,28 @@ footer{
   .cta-final-card{padding:36px 20px;}
   footer{flex-direction:column;text-align:center;}
 }
+
+/* ── REGISTRO MODAL ── */
+#reg-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(28,25,23,0.6);align-items:center;justify-content:center;padding:16px;}
+#reg-modal.open{display:flex;}
+.reg-card{background:var(--bg);border-radius:20px;padding:32px;width:100%;max-width:420px;animation:regUp 0.3s ease both;}
+@keyframes regUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.reg-title{font-family:'Instrument Serif',serif;font-size:26px;color:var(--text);letter-spacing:-0.3px;margin-bottom:6px;}
+.reg-sub{font-size:13px;color:var(--ghost);font-weight:400;margin-bottom:22px;line-height:1.6;}
+.reg-field{margin-bottom:14px;}
+.reg-label{font-size:12px;color:var(--soft);font-weight:600;margin-bottom:5px;display:block;}
+.reg-inp{width:100%;background:var(--s1);border:1.5px solid var(--s3);border-radius:10px;color:var(--text);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:11px 14px;outline:none;transition:border-color 0.2s;}
+.reg-inp:focus{border-color:var(--pur);background:#fff;}
+.reg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.reg-submit{width:100%;background:var(--text);color:#fff;border:none;border-radius:100px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:14px;cursor:pointer;margin-top:6px;transition:background 0.2s;}
+.reg-submit:hover{background:#292524;}
+.reg-submit:disabled{background:var(--ghost);cursor:not-allowed;}
+.reg-note{font-size:11px;color:var(--ghost);text-align:center;margin-top:10px;}
+.reg-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;color:var(--ghost);cursor:pointer;line-height:1;}
+.reg-success{text-align:center;padding:16px 0;}
+.reg-success-icon{font-size:48px;margin-bottom:12px;}
+.reg-success-title{font-family:'Instrument Serif',serif;font-size:24px;color:var(--text);margin-bottom:8px;}
+.reg-success-desc{font-size:14px;color:var(--soft);line-height:1.6;margin-bottom:22px;}
 </style>
 </head>
 <body>
@@ -265,7 +287,7 @@ footer{
     <a href="#precio">Precio</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a href="app/index.html" class="nav-cta">Probar gratis</a>
+  <a href="#" onclick="openReg();return false;" class="nav-cta">Probar gratis</a>
 </nav>
 
 <!-- HERO -->
@@ -280,7 +302,7 @@ footer{
       La app de presupuesto base cero que te dice <b>exactamente a dónde va cada peso</b> — y te proyecta cuánto tendrás en 1, 3 y 5 años.
     </p>
     <div class="hero-actions">
-      <a href="app/index.html" class="btn-primary">Descargar gratis</a>
+      <a href="#" onclick="openReg();return false;" class="btn-primary">Descargar gratis</a>
       <a href="#como-funciona" class="btn-secondary">Ver cómo funciona</a>
     </div>
     <p class="hero-price">Versión piloto gratuita · <b>Acceso sin costo durante el lanzamiento</b></p>
@@ -437,7 +459,7 @@ footer{
       <li>Funciona sin internet (app instalable)</li>
       <li>Actualizaciones incluidas</li>
     </ul>
-    <a href="app/index.html" class="price-cta" style="background:var(--pur);">Acceder gratis ahora</a>
+    <a href="#" onclick="openReg();return false;" class="price-cta" style="background:var(--pur);">Acceder gratis ahora</a>
     <p class="price-note">Sin tarjeta · Sin compromisos · Precio de lanzamiento próximamente</p>
   </div>
 </section>
@@ -480,7 +502,7 @@ footer{
   <div class="cta-final-card">
     <h2 class="cta-final-title">Empieza hoy.<br>Tu yo de dentro de 3 años<br>te lo va a agradecer.</h2>
     <p class="cta-final-sub">$99 MXN al mes. Sin compromisos. Sin excusas.</p>
-    <a href="app/index.html" class="btn-primary-light">Acceder gratis ahora</a>
+    <a href="#" onclick="openReg();return false;" class="btn-primary-light">Acceder gratis ahora</a>
   </div>
 </section>
 
@@ -511,6 +533,98 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+</script>
+
+<!-- REGISTRO MODAL -->
+<div id="reg-modal">
+  <div class="reg-card" style="position:relative;">
+    <button class="reg-close" onclick="closeReg()">✕</button>
+    <div id="reg-form-view">
+      <div class="reg-title">Un paso antes de entrar</div>
+      <div class="reg-sub">Déjanos tus datos para personalizar tu experiencia y mantenerte al tanto de novedades.</div>
+      <div class="reg-row">
+        <div class="reg-field">
+          <label class="reg-label">Nombre *</label>
+          <input class="reg-inp" type="text" id="reg-nombre" placeholder="Tu nombre">
+        </div>
+        <div class="reg-field">
+          <label class="reg-label">Ciudad *</label>
+          <input class="reg-inp" type="text" id="reg-ciudad" placeholder="Tu ciudad">
+        </div>
+      </div>
+      <div class="reg-row">
+        <div class="reg-field">
+          <label class="reg-label">Edad *</label>
+          <input class="reg-inp" type="number" id="reg-edad" placeholder="Tu edad" min="16" max="99">
+        </div>
+        <div class="reg-field">
+          <label class="reg-label">Ocupación *</label>
+          <input class="reg-inp" type="text" id="reg-ocupacion" placeholder="Ej. Contador">
+        </div>
+      </div>
+      <div class="reg-field">
+        <label class="reg-label">Correo electrónico *</label>
+        <input class="reg-inp" type="email" id="reg-email" placeholder="tu@correo.com">
+      </div>
+      <button class="reg-submit" id="reg-btn" onclick="submitReg()">Acceder a Cero gratis</button>
+      <p class="reg-note">Tus datos están protegidos y nunca se compartirán con terceros.</p>
+    </div>
+    <div id="reg-success-view" style="display:none;" class="reg-success">
+      <div class="reg-success-icon">🎉</div>
+      <div class="reg-success-title">¡Bienvenido a Cero!</div>
+      <div class="reg-success-desc">Gracias por registrarte. En un momento te llevamos a la app.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycby6q9cijZqsFxesizWbdKV6I6nr15bX31VH0Y2kzY8DfdI9Yr9sSrHW4VmtLIi7eo72ag/exec';
+
+function openReg(){
+  document.getElementById('reg-modal').classList.add('open');
+}
+function closeReg(){
+  document.getElementById('reg-modal').classList.remove('open');
+}
+// Close on backdrop click
+document.getElementById('reg-modal').addEventListener('click', function(e){
+  if(e.target === this) closeReg();
+});
+
+async function submitReg(){
+  const nombre = document.getElementById('reg-nombre').value.trim();
+  const ciudad = document.getElementById('reg-ciudad').value.trim();
+  const edad   = document.getElementById('reg-edad').value.trim();
+  const ocup   = document.getElementById('reg-ocupacion').value.trim();
+  const email  = document.getElementById('reg-email').value.trim();
+
+  if(!nombre||!ciudad||!edad||!ocup||!email){
+    alert('Por favor llena todos los campos.');
+    return;
+  }
+  if(!/^[^@]+@[^@]+\.[^@]+$/.test(email)){
+    alert('Ingresa un correo válido.');
+    return;
+  }
+
+  const btn = document.getElementById('reg-btn');
+  btn.disabled = true;
+  btn.textContent = 'Guardando...';
+
+  try{
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({nombre,ciudad,edad,email,ocupacion:ocup})
+    });
+  } catch(e){}
+
+  // Show success and redirect
+  document.getElementById('reg-form-view').style.display = 'none';
+  document.getElementById('reg-success-view').style.display = 'block';
+  setTimeout(()=>{ window.location.href = 'app/index.html'; }, 2000);
+}
 </script>
 </body>
 </html>

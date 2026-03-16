@@ -1,25 +1,15 @@
 {
-  "name": "Presupuesto Base Cero — Ramsey",
-  "short_name": "Presupuesto",
-  "description": "Presupuesto base cero al estilo Ramsey Solutions con Baby Steps",
+  "name": "Cero — Presupuesto Base Cero",
+  "short_name": "Cero",
+  "description": "Presupuesto base cero para México · by VRAV",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0e0e0e",
-  "theme_color": "#c8841a",
+  "background_color": "#faf9f7",
+  "theme_color": "#4f46e5",
   "orientation": "any",
   "lang": "es",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    {"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ]
 }

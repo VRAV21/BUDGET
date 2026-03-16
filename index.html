@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -620,18 +619,26 @@ async function submitReg(){
   btn.disabled = true;
   btn.textContent = 'Guardando...';
 
-  // Use URL params via GET to avoid CORS issues with Google Apps Script
-  const params = new URLSearchParams({nombre,ciudad,edad,email,ocupacion:ocup});
-  const url = SHEET_URL + '?' + params.toString();
-
   try{
-    await fetch(url, {method:'GET', mode:'no-cors'});
-  } catch(e){}
-
-  // Show success and redirect regardless
-  document.getElementById('reg-form-view').style.display = 'none';
-  document.getElementById('reg-success-view').style.display = 'block';
-  setTimeout(()=>{ window.location.href = 'app/index.html'; }, 2000);
+    const res = await fetch('https://formspree.io/f/mpqyyebd', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({nombre, ciudad, edad, email, ocupacion: ocup})
+    });
+    const data = await res.json();
+    if(data.ok){
+      document.getElementById('reg-form-view').style.display = 'none';
+      document.getElementById('reg-success-view').style.display = 'block';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Acceder a Cero gratis';
+      alert('Hubo un error, intenta de nuevo.');
+    }
+  } catch(e){
+    btn.disabled = false;
+    btn.textContent = 'Acceder a Cero gratis';
+    alert('Hubo un error, intenta de nuevo.');
+  }
 }
 </script>
 </body>

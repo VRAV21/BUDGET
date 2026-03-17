@@ -97,7 +97,7 @@ body{font-family:'Inter',sans-serif;background-color:#faf9f7;background-image:ra
 .bal-banner{background:var(--text);padding:20px 32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;}
 .bb-brand{display:flex;flex-direction:column;gap:2px;}
 .bb-eyebrow{font-size:11px;color:rgba(255,255,255,0.45);font-weight:500;letter-spacing:0.15em;text-transform:uppercase;}
-.bb-name{font-family:'Inter',sans-serif;font-size:34px;font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1;}
+.bb-name{font-family:'Inter',sans-serif;font-size:34px;font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1;text-transform:capitalize;}
 .bb-center{display:flex;gap:20px;align-items:center;}
 .bb-chip{text-align:center;}
 .bb-chip-lbl{font-size:10px;color:rgba(255,255,255,0.4);font-weight:400;letter-spacing:0.08em;text-transform:uppercase;}
@@ -378,7 +378,7 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
 /* ── INSTALL BTN ── */
 .install-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:10px;height:34px;padding:0 12px;display:flex;align-items:center;gap:6px;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#fff;transition:background 0.15s;white-space:nowrap;text-decoration:none;}
 .install-btn:hover{background:rgba(255,255,255,0.18);}
-.install-btn.hidden{display:none;}
+
 #install-modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(28,25,23,0.5);align-items:center;justify-content:center;padding:16px;}
 #install-modal.open{display:flex;}
 .inst-card{background:var(--bg);border-radius:20px;padding:28px;width:100%;max-width:400px;}
@@ -514,15 +514,15 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
       <div class="ob-sub">Esto define en qué etapa estás y cómo priorizar tu dinero correctamente.</div>
       <div class="ob-options">
         <div class="ob-opt sel" id="opt-sin" onclick="selOpt('debt','sin','opt-')">
-          <div class="ob-opt-ico">✓</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div><div class="ob-opt-name">No tengo deudas</div><div class="ob-opt-sub">Puedo enfocarme en ahorrar e invertir</div></div>
         </div>
         <div class="ob-opt" id="opt-tarjeta" onclick="selOpt('debt','tarjeta','opt-')">
-          <div class="ob-opt-ico">💳</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
           <div><div class="ob-opt-name">Tengo tarjeta(s) de crédito</div><div class="ob-opt-sub">Etapa 2 — bola de nieve activa</div></div>
         </div>
         <div class="ob-opt" id="opt-multiple" onclick="selOpt('debt','multiple','opt-')">
-          <div class="ob-opt-ico">📋</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
           <div><div class="ob-opt-name">Tengo varias deudas</div><div class="ob-opt-sub">Auto, crédito personal, tarjetas…</div></div>
         </div>
       </div>
@@ -541,19 +541,19 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
       <div class="ob-sub">Personalizo las proyecciones y tu siguiente paso según esto.</div>
       <div class="ob-options">
         <div class="ob-opt sel" id="goal-emergencia" onclick="selOpt('goal','emergencia','goal-')">
-          <div class="ob-opt-ico">🛡</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div><div class="ob-opt-name">Crear mi fondo de emergencia</div><div class="ob-opt-sub">Meta: 3–6 meses de gastos</div></div>
         </div>
         <div class="ob-opt" id="goal-deuda" onclick="selOpt('goal','deuda','goal-')">
-          <div class="ob-opt-ico">💳</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
           <div><div class="ob-opt-name">Eliminar mis deudas</div><div class="ob-opt-sub">Método bola de nieve</div></div>
         </div>
         <div class="ob-opt" id="goal-inversion" onclick="selOpt('goal','inversion','goal-')">
-          <div class="ob-opt-ico">📈</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
           <div><div class="ob-opt-name">Empezar a invertir</div><div class="ob-opt-sub">Para retiro o patrimonio</div></div>
         </div>
         <div class="ob-opt" id="goal-meta" onclick="selOpt('goal','meta','goal-')">
-          <div class="ob-opt-ico">🎯</div>
+          <div class="ob-opt-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div><div class="ob-opt-name">Ahorrar para una meta específica</div><div class="ob-opt-sub">Casa, auto, viaje, educación…</div></div>
         </div>
       </div>
@@ -600,11 +600,13 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
 
   <div style="position:relative;">
   <div style="position:absolute;top:8px;right:16px;z-index:50;">
-    <div class="gear-btn" onclick="toggleGear()" id="gear-btn">⚙</div>
+    <div class="gear-btn" onclick="toggleGear()" id="gear-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
     <div class="gear-menu" id="gear-menu">
-      <div class="gear-item" onclick="retakeOnboarding()"><span class="gear-item-ico">🔄</span>Retomar configuración</div>
+      <div class="gear-item" onclick="openInstallModal();document.getElementById('gear-menu').classList.remove('open');"><span class="gear-item-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>Instalar app</div>
       <div class="gear-divider"></div>
-      <div class="gear-item danger" onclick="showConfirm()"><span class="gear-item-ico">🗑</span>Reiniciar todo</div>
+      <div class="gear-item" onclick="retakeOnboarding()"><span class="gear-item-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span>Retomar configuración</div>
+      <div class="gear-divider"></div>
+      <div class="gear-item danger" onclick="showConfirm()"><span class="gear-item-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></span>Reiniciar todo</div>
     </div>
   </div>
 </div>
@@ -622,7 +624,7 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
     <!-- PRESUPUESTO -->
     <div id="tab-budget" class="tab-panel active">
       <div id="install-reminder">
-        <div class="ir-icon">💾</div>
+        <div class="ir-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></div>
         <div class="ir-body">
           <div class="ir-title">Instala la app para no perder tus datos</div>
           <div class="ir-desc">En la versión web los datos se guardan en este navegador. Si cambias de dispositivo o navegador los perderás — instala la app para mayor seguridad.</div>
@@ -682,11 +684,11 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
     <div id="tab-proyecciones" class="tab-panel">
       <div class="notice">Modela tu <b>futuro financiero</b> en 6 escenarios. Ajusta los parámetros y ve el impacto en tiempo real.</div>
       <div class="proj-pills">
-        <button class="proj-pill active" onclick="setProjSc('ahorro',this)">🛡 Emergencia</button>
-        <button class="proj-pill" onclick="setProjSc('deuda',this)">💳 Deuda</button>
-        <button class="proj-pill" onclick="setProjSc('inversion',this)">📈 Inversión</button>
-        <button class="proj-pill" onclick="setProjSc('meta',this)">🎯 Meta</button>
-        <button class="proj-pill" onclick="setProjSc('historico',this)">📊 Histórico</button>
+        <button class="proj-pill active" onclick="setProjSc('ahorro',this)">Emergencia</button>
+        <button class="proj-pill" onclick="setProjSc('deuda',this)">Deuda</button>
+        <button class="proj-pill" onclick="setProjSc('inversion',this)">Inversión</button>
+        <button class="proj-pill" onclick="setProjSc('meta',this)">Meta</button>
+        <button class="proj-pill" onclick="setProjSc('historico',this)">Histórico</button>
       </div>
       <div class="proj-grid">
         <div>
@@ -743,11 +745,11 @@ main{max-width:860px;margin:0 auto;padding:28px 24px 80px;}
           <div class="cal-field"><label>Monto</label><input type="number" id="cal-amt" placeholder="Opcional" style="width:100px;font-weight:600;"></div>
           <div class="cal-field"><label>Tipo</label>
             <select id="cal-type">
-              <option value="gasto">💸 Gasto</option>
-              <option value="ahorro">🛡 Ahorro</option>
-              <option value="ingreso">💰 Ingreso</option>
-              <option value="deuda">💳 Deuda</option>
-              <option value="recordatorio">🔔 Recordatorio</option>
+              <option value="gasto">Gasto</option>
+              <option value="ahorro">Ahorro</option>
+              <option value="ingreso">Ingreso</option>
+              <option value="deuda">Deuda</option>
+              <option value="recordatorio">Recordatorio</option>
             </select>
           </div>
           <button class="cal-add-btn" onclick="addCalEvent()">Agregar</button>
@@ -810,25 +812,25 @@ const CHECKS=[
 ];
 
 const RECS=[
-  {cat:'Ingresos y aumentos',icon:'📈',t:'Si recibes un aumento salarial',d:'El 100% del aumento va a deuda o inversión hasta estar libre. Tu estilo de vida no debe crecer con tu ingreso.',imp:'alto'},
-  {cat:'Ingresos y aumentos',icon:'🎁',t:'Si recibes bono o aguinaldo',d:'50% pago extra de deuda · 30% fondo de emergencia · 20% disfrute. El aguinaldo bien usado puede acelerar tu libertad financiera por meses.',imp:'alto'},
-  {cat:'Ingresos y aumentos',icon:'💼',t:'Si consigues un segundo ingreso',d:'Destina el 100% de ese ingreso extra a liquidar deudas mientras dure.',imp:'alto'},
-  {cat:'Control del gasto',icon:'📱',t:'Si quieres una nueva suscripción',d:'Espera 72 horas. Si aún la quieres, cancela una existente primero. Cada $150/mes son $1,800 al año.',imp:'medio'},
-  {cat:'Control del gasto',icon:'🛒',t:'Si tienes un antojo de compra impulsiva',d:'Regla de los 30 días: anótala. El 80% de las compras impulsivas se olvidan antes de ese plazo.',imp:'medio'},
-  {cat:'Control del gasto',icon:'🍽️',t:'Si gastas demasiado en comida fuera',d:'Planea el menú cada domingo. Las familias que planean gastan hasta 40% menos en alimentación.',imp:'medio'},
-  {cat:'Control del gasto',icon:'🏷️',t:'Antes de cualquier compra mayor a $1,500',d:'Espera 48h y compara 3 precios. Las compras planificadas ahorran en promedio 20%.',imp:'medio'},
-  {cat:'Protección ante crisis',icon:'📉',t:'Si disminuye tu ingreso',d:'Recorta en orden: ocio, suscripciones, irregulares. Nunca toques el fondo de emergencia ni salud.',imp:'alto'},
-  {cat:'Protección ante crisis',icon:'🏥',t:'Si tienes un gasto médico inesperado',d:'Para esto existe el fondo de emergencia — úsalo sin culpa. Reconstitúyelo antes de retomar cualquier otro objetivo.',imp:'alto'},
-  {cat:'Protección ante crisis',icon:'🔧',t:'Si tu auto o casa necesita reparación',d:'Si tienes fondo de emergencia, úsalo. Nunca financies una reparación con tarjeta de crédito.',imp:'alto'},
-  {cat:'Deuda inteligente',icon:'💳',t:'Si piensas usar la tarjeta de crédito',d:'Solo úsala si puedes pagarla completa ese mismo mes. La tasa promedio en México es 60–80% anual.',imp:'alto'},
-  {cat:'Deuda inteligente',icon:'🏦',t:'Si te ofrecen un crédito o préstamo',d:'Pregunta siempre el CAT (Costo Anual Total). Compara mínimo 3 opciones antes de firmar.',imp:'alto'},
-  {cat:'Deuda inteligente',icon:'🔄',t:'Si te ofrecen consolidar tus deudas',d:'Solo acepta si la tasa es menor a todas las actuales Y cancelas las tarjetas consolidadas de inmediato.',imp:'medio'},
-  {cat:'Inversión y futuro',icon:'🌱',t:'Una vez libre de deudas (Paso 3)',d:'Invierte mínimo el 15% de tu ingreso bruto. Las aportaciones al AFORE tienen deducción de ISR.',imp:'alto'},
-  {cat:'Inversión y futuro',icon:'📊',t:'Si quieres invertir sin experiencia',d:'Empieza con CETES en cetesdirecto.com — sin riesgo, desde $100 MXN.',imp:'medio'},
-  {cat:'Inversión y futuro',icon:'🏠',t:'Si quieres comprar una casa',d:'La hipoteca no debe superar el 25% de tu ingreso neto. Ahorra mínimo 20% de enganche.',imp:'alto'},
-  {cat:'Hábitos de alto impacto',icon:'📓',t:'Cada quincena, antes de gastar',d:'Haz el presupuesto antes de que llegue el dinero. Quienes presupuestan antes ahorran 3x más.',imp:'alto'},
-  {cat:'Hábitos de alto impacto',icon:'👥',t:'Si tienes pareja',d:'Hagan el presupuesto juntos cada mes — máximo 30 minutos. Reduce conflictos financieros en un 70%.',imp:'alto'},
-  {cat:'Hábitos de alto impacto',icon:'📵',t:'Si las redes te generan ganas de gastar',d:'Silencia cuentas aspiracionales. Compara tu situación de hoy con la tuya de hace un año, no con la de otros.',imp:'medio'},
+  {cat:'Ingresos y aumentos',icon:'',t:'Si recibes un aumento salarial',d:'El 100% del aumento va a deuda o inversión hasta estar libre. Tu estilo de vida no debe crecer con tu ingreso.',imp:'alto'},
+  {cat:'Ingresos y aumentos',icon:'',t:'Si recibes bono o aguinaldo',d:'50% pago extra de deuda · 30% fondo de emergencia · 20% disfrute. El aguinaldo bien usado puede acelerar tu libertad financiera por meses.',imp:'alto'},
+  {cat:'Ingresos y aumentos',icon:'',t:'Si consigues un segundo ingreso',d:'Destina el 100% de ese ingreso extra a liquidar deudas mientras dure.',imp:'alto'},
+  {cat:'Control del gasto',icon:'',t:'Si quieres una nueva suscripción',d:'Espera 72 horas. Si aún la quieres, cancela una existente primero. Cada $150/mes son $1,800 al año.',imp:'medio'},
+  {cat:'Control del gasto',icon:'',t:'Si tienes un antojo de compra impulsiva',d:'Regla de los 30 días: anótala. El 80% de las compras impulsivas se olvidan antes de ese plazo.',imp:'medio'},
+  {cat:'Control del gasto',icon:'',t:'Si gastas demasiado en comida fuera',d:'Planea el menú cada domingo. Las familias que planean gastan hasta 40% menos en alimentación.',imp:'medio'},
+  {cat:'Control del gasto',icon:'',t:'Antes de cualquier compra mayor a $1,500',d:'Espera 48h y compara 3 precios. Las compras planificadas ahorran en promedio 20%.',imp:'medio'},
+  {cat:'Protección ante crisis',icon:'',t:'Si disminuye tu ingreso',d:'Recorta en orden: ocio, suscripciones, irregulares. Nunca toques el fondo de emergencia ni salud.',imp:'alto'},
+  {cat:'Protección ante crisis',icon:'',t:'Si tienes un gasto médico inesperado',d:'Para esto existe el fondo de emergencia — úsalo sin culpa. Reconstitúyelo antes de retomar cualquier otro objetivo.',imp:'alto'},
+  {cat:'Protección ante crisis',icon:'',t:'Si tu auto o casa necesita reparación',d:'Si tienes fondo de emergencia, úsalo. Nunca financies una reparación con tarjeta de crédito.',imp:'alto'},
+  {cat:'Deuda inteligente',icon:'',t:'Si piensas usar la tarjeta de crédito',d:'Solo úsala si puedes pagarla completa ese mismo mes. La tasa promedio en México es 60–80% anual.',imp:'alto'},
+  {cat:'Deuda inteligente',icon:'',t:'Si te ofrecen un crédito o préstamo',d:'Pregunta siempre el CAT (Costo Anual Total). Compara mínimo 3 opciones antes de firmar.',imp:'alto'},
+  {cat:'Deuda inteligente',icon:'',t:'Si te ofrecen consolidar tus deudas',d:'Solo acepta si la tasa es menor a todas las actuales Y cancelas las tarjetas consolidadas de inmediato.',imp:'medio'},
+  {cat:'Inversión y futuro',icon:'',t:'Una vez libre de deudas (Paso 3)',d:'Invierte mínimo el 15% de tu ingreso bruto. Las aportaciones al AFORE tienen deducción de ISR.',imp:'alto'},
+  {cat:'Inversión y futuro',icon:'',t:'Si quieres invertir sin experiencia',d:'Empieza con CETES en cetesdirecto.com — sin riesgo, desde $100 MXN.',imp:'medio'},
+  {cat:'Inversión y futuro',icon:'',t:'Si quieres comprar una casa',d:'La hipoteca no debe superar el 25% de tu ingreso neto. Ahorra mínimo 20% de enganche.',imp:'alto'},
+  {cat:'Hábitos de alto impacto',icon:'',t:'Cada quincena, antes de gastar',d:'Haz el presupuesto antes de que llegue el dinero. Quienes presupuestan antes ahorran 3x más.',imp:'alto'},
+  {cat:'Hábitos de alto impacto',icon:'',t:'Si tienes pareja',d:'Hagan el presupuesto juntos cada mes — máximo 30 minutos. Reduce conflictos financieros en un 70%.',imp:'alto'},
+  {cat:'Hábitos de alto impacto',icon:'',t:'Si las redes te generan ganas de gastar',d:'Silencia cuentas aspiracionales. Compara tu situación de hoy con la tuya de hace un año, no con la de otros.',imp:'medio'},
 ];
 
 const PASOS=[
@@ -952,9 +954,7 @@ function closeInstallModal(){
 document.addEventListener('DOMContentLoaded',()=>{
   const modal=document.getElementById('install-modal');
   if(modal)modal.addEventListener('click',function(e){if(e.target===this)closeInstallModal();});
-  // Hide install button if already installed
-  const isInstalled=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
-  if(isInstalled){const btn=document.getElementById('install-btn');if(btn)btn.classList.add('hidden');}
+  // Install button always visible
 });
 function toggleGear(){
   const m=document.getElementById('gear-menu');
@@ -1007,18 +1007,24 @@ document.getElementById('inc-modal').addEventListener('click',function(e){if(e.t
 // STEP BANNER
 // ════════════════════════════════════════════
 const STEP_DATA={
-  sin:{icon:'📈',eyebrow:'Tu siguiente paso',title:'Paso 4 — Invierte para tu retiro',desc:'Estás libre de deudas. Invierte mínimo el 15% de tu ingreso bruto en AFORE o fondos indexados.'},
-  tarjeta:{icon:'💳',eyebrow:'Tu siguiente paso',title:'Paso 2 — Elimina tus deudas',desc:'Paga el mínimo en todas las tarjetas y ataca la de menor saldo con todo el extra disponible.'},
-  multiple:{icon:'💳',eyebrow:'Tu siguiente paso',title:'Paso 2 — Elimina tus deudas',desc:'Ordena tus deudas de menor a mayor saldo. Paga mínimo en todas y enfoca todo el extra en la primera.'},
-  emergencia:{icon:'🛡',eyebrow:'Tu siguiente paso',title:'Paso 1 — Crea tu fondo de emergencia',desc:'Acumula $1,000 MXN antes de cualquier otra cosa. Luego súbelo a 3–6 meses de tus gastos.'},
-  deuda:{icon:'💳',eyebrow:'Tu siguiente paso',title:'Paso 2 — Elimina tus deudas',desc:'Paga el mínimo en todas y ataca la de menor saldo con todo el extra. Al liquidarla pasa a la siguiente.'},
-  inversion:{icon:'📈',eyebrow:'Tu siguiente paso',title:'Paso 4 — Invierte para tu retiro',desc:'Invierte mínimo el 15% de tu ingreso bruto. Las aportaciones al AFORE tienen deducción de ISR.'},
-  meta:{icon:'🎯',eyebrow:'Tu siguiente paso',title:'Paso 3 — Fondo de emergencia completo',desc:'Primero completa tu fondo a 3–6 meses de gastos, luego empieza a ahorrar para tu meta específica.'},
+  sin:{icon:'trend',eyebrow:'Tu siguiente paso',title:'Paso 4 — Invierte para tu retiro',desc:'Estás libre de deudas. Invierte mínimo el 15% de tu ingreso bruto en AFORE o fondos indexados.'},
+  tarjeta:{icon:'card',eyebrow:'Tu siguiente paso',title:'Paso 2 — Elimina tus deudas',desc:'Paga el mínimo en todas las tarjetas y ataca la de menor saldo con todo el extra disponible.'},
+  multiple:{icon:'card',eyebrow:'Tu siguiente paso',title:'Paso 2 — Elimina tus deudas',desc:'Ordena tus deudas de menor a mayor saldo. Paga mínimo en todas y enfoca todo el extra en la primera.'},
+  emergencia:{icon:'shield',eyebrow:'Tu siguiente paso',title:'Paso 1 — Crea tu fondo de emergencia',desc:'Acumula $1,000 MXN antes de cualquier otra cosa. Luego súbelo a 3–6 meses de tus gastos.'},
+  deuda:{icon:'card',eyebrow:'Tu siguiente paso',title:'Paso 2 — Elimina tus deudas',desc:'Paga el mínimo en todas y ataca la de menor saldo con todo el extra. Al liquidarla pasa a la siguiente.'},
+  inversion:{icon:'trend',eyebrow:'Tu siguiente paso',title:'Paso 4 — Invierte para tu retiro',desc:'Invierte mínimo el 15% de tu ingreso bruto. Las aportaciones al AFORE tienen deducción de ISR.'},
+  meta:{icon:'target',eyebrow:'Tu siguiente paso',title:'Paso 3 — Fondo de emergencia completo',desc:'Primero completa tu fondo a 3–6 meses de gastos, luego empieza a ahorrar para tu meta específica.'},
 };
 function updateStepBanner(){
   const key=obDebt!=='sin'?obDebt:obGoal;
   const s=STEP_DATA[key]||STEP_DATA.emergencia;
-  document.getElementById('step-ico').textContent=s.icon;
+  const iconMap={
+    trend:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+    card:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>',
+    shield:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    target:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>'
+  };
+  document.getElementById('step-ico').innerHTML=iconMap[s.icon]||iconMap.shield;
   document.getElementById('step-eyebrow').textContent=s.eyebrow;
   document.getElementById('step-title').textContent=s.title;
   document.getElementById('step-desc').textContent=s.desc;
